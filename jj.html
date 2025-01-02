@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顧客資料蒐集</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+        }
+        input[type="text"], input[type="email"], input[type="tel"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f7e7;
+            border: 1px solid #d1f2d1;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>顧客資料蒐集</h1>
+
+    <div class="container">
+        <form id="customerForm">
+            <div class="form-group">
+                <label for="name">姓名</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">電子郵件</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">電話號碼</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <button type="submit">提交資料</button>
+        </form>
+
+        <div class="result" id="resultMessage" style="display:none;">
+            <h3>感謝您的提交！以下是您填寫的資料：</h3>
+            <p id="resultName"></p>
+            <p id="resultEmail"></p>
+            <p id="resultPhone"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('customerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // 取得表單數據
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            // 顯示結果
+            document.getElementById('resultName').innerText = '姓名: ' + name;
+            document.getElementById('resultEmail').innerText = '電子郵件: ' + email;
+            document.getElementById('resultPhone').innerText = '電話號碼: ' + (phone ? phone : '無提供');
+            
+            document.getElementById('resultMessage').style.display = 'block';
+
+            // 重置表單
+            document.getElementById('customerForm').reset();
+        });
+    </script>
+
+</body>
+</html>
